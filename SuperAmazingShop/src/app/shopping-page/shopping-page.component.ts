@@ -1,7 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { GetdataService } from '../getdata.service';
-import { GetData } from '../getdata';
-
+import { ICategory } from '../category';
+import { SubcategoryComponent } from '../subcategory/subcategory.component';
 
 @Component({
   selector: 'app-shopping-page',
@@ -10,43 +10,30 @@ import { GetData } from '../getdata';
 })
 @Injectable()
 export class ShoppingPageComponent implements OnInit {
-  test: GetData[];
-
-  constructor(public data: GetdataService) {}
+  JSONData: ICategory;
+  category: string;
+  catIndex: number;
+  subcategorie: string;
+  subIndex: number;
+  constructor(public data: GetdataService, public sub: SubcategoryComponent) {
+    this.category = null;
+    this.subcategorie = null;
+  }
   ngOnInit() {
-    this.data.getData().subscribe((value: GetData[]) => {
-      for (let c of value) {
-        let int1 = 0;
-        this.test[int1].category = c.category;
-        for (let s of value) {
-          let int2 = 0;
-          this.test[int1].subcategories[int2].name = s.subcategories[int2].name;
-          for (let i of value) {
-            let int3 = 0;
-            this.test[int1].subcategories[int2].items[int3].name =
-              i.subcategories[int2].items[int3].name;
-            this.test[int1].subcategories[int2].items[int3].description =
-              i.subcategories[int2].items[int3].description;
-            this.test[int1].subcategories[int2].items[int3].price =
-              i.subcategories[int2].items[int3].price;
-            this.test[int1].subcategories[int2].items[int3].imagelink =
-              i.subcategories[int2].items[int3].imagelink;
-            this.test[int1].subcategories[int2].items[int3].rating =
-              i.subcategories[int2].items[int3].rating;
-            this.test[int1].subcategories[int2].items[int3].stock =
-              i.subcategories[int2].items[int3].stock;
-            this.test[int1].subcategories[int2].items[int3].category =
-              i.subcategories[int2].items[int3].category;
-            this.test[int1].subcategories[int2].items[int3].subcategory =
-              i.subcategories[int2].items[int3].subcategory;
-            int3++;
-          }
-          int2++;
-        }
-        int1++;
-      }
-
-      console.log(this.test);
+    this.data.getData().subscribe((value: ICategory) => {
+      this.JSONData = value;
+      console.log(this.JSONData);
     });
+  }
+  setCat(value: string, index: number) {
+    this.category = value;
+    this.subcategorie = null;
+    this.catIndex = index;
+    this.sub.setCatIndex(this.catIndex);
+  }
+  setSubCat(value: string, index: number) {
+    this.subcategorie = value;
+    this.category = null;
+    this.subIndex = index;
   }
 }

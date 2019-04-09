@@ -1,62 +1,34 @@
 <div class="row">
   <div class="col-lg-3 col-5 box">
-    <p class="mt-1">
-      <a
-        class="btn btn-primary"
-        data-toggle="collapse"
-        href="#cat1"
-        role="button"
-        aria-expanded="false"
-        aria-controls="cat1"
-      >
-        Category
-      </a>
-    </p>
-    <div class="collapse" id="cat1">
-      <div class="card card-body">
-        <li>Subcategorie</li>
-        <li>Subcategorie</li>
-        <li>Subcategorie</li>
-      </div>
-    </div>
-    <p class="mt-1">
-      <a
-        class="btn btn-primary"
-        data-toggle="collapse"
-        href="#cat2"
-        role="button"
-        aria-expanded="false"
-        aria-controls="cat2"
-      >
-        Category
-      </a>
-    </p>
-    <div class="collapse" id="cat2">
-      <div class="card card-body">
-        <li>Subcategorie</li>
-        <li>Subcategorie</li>
-        <li>Subcategorie</li>
-      </div>
-    </div>
-    <p class="mt-1">
-      <a
-        class="btn btn-primary"
-        data-toggle="collapse"
-        href="#cat3"
-        role="button"
-        aria-expanded="false"
-        aria-controls="ca3"
-      >
-        Category
-      </a>
-    </p>
-    <div class="collapse" id="cat3">
-      <div class="card card-body">
-        <li>Subcategorie</li>
-        <li>Subcategorie</li>
-        <li>Subcategorie</li>
+    <div id="accordion">
+      <div *ngFor="let cat of JSONData; let i = index;">
+        <div class="card  mt-3">
+          <div class="card-header" id="heading{{i}}">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" attr.data-target="#collapse{{i}}"
+                aria-expanded="false" attr.aria-controls="collapse{{i}}" attr.value="{{cat.category}}"
+                (click)="setCat(value,i)">
+                {{cat.category}}
+              </button>
+            </h5>
+          </div>
+          <div id="collapse{{i}}" class="collapse" attr.aria-labelledby="heading{{i}}" data-parent="#accordion">
+            <div class="card-body">
+              <div *ngFor="let sub of cat.subcategories">
+                <li><a attr.value="{{sub.name}}" (click)="setSubCat(value,i)">{{sub.name}}</a></li>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-9 col-7 box">Lorem ipsum</div>
+  <div class="col-lg-9 col-7 box">
+    <div *ngIf="category !== null">
+      <app-subcategory></app-subcategory>
+    </div>
+    <div *ngIf="subcategorie !== null">
+      <app-detail></app-detail>
+    </div>
+  </div>
 </div>
