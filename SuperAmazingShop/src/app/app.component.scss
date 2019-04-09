@@ -1,0 +1,20 @@
+$firstcolor: rgb(231, 231, 231);
+.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: $firstcolor;
+}
+.header{
+    background-color: $firstcolor;
+}
+.card{
+    background-color: beige;
+    height: 95vh;
+}
+.homelink{
+    text-decoration: none;
+    color:black;
+}

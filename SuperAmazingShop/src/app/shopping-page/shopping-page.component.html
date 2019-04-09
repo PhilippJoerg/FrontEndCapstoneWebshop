@@ -1,3 +1,34 @@
-<p>
-  shopping-page works!
-</p>
+<div class="row">
+  <div class="col-lg-3 col-5 box">
+    <div id="accordion">
+      <div *ngFor="let cat of JSONData; let i = index;">
+        <div class="card  mt-3">
+          <div class="card-header" id="heading{{i}}">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" attr.data-target="#collapse{{i}}"
+                aria-expanded="false" attr.aria-controls="collapse{{i}}" attr.value="{{cat.category}}"
+                (click)="setCat(value,i)">
+                {{cat.category}}
+              </button>
+            </h5>
+          </div>
+          <div id="collapse{{i}}" class="collapse" attr.aria-labelledby="heading{{i}}" data-parent="#accordion">
+            <div class="card-body">
+              <div *ngFor="let sub of cat.subcategories; let j = index;">
+                <li><a attr.value="{{sub.name}}" (click)="setSubCat(value,j)">{{sub.name}}</a></li>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-9 col-7 box">
+    <div *ngIf="category !== null">
+      <app-subcategory [CatIndex]="catIndex" [JsonData]="JSONData"></app-subcategory>
+    </div>
+    <div *ngIf="subcategorie !== null">
+      <app-detail></app-detail>
+    </div>
+  </div>
+</div>
