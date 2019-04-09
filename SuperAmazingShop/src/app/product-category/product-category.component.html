@@ -1,0 +1,42 @@
+<div class="container my-2">
+  <div class="row box justify-content-around align-items-center">
+    <div class="col-3">
+      {{JsonData[CatIndex].subcategories[SubIndex].name}}
+    </div>
+    <div class="col-5">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </button>
+        <div class="dropdown-menu" aria-labelledby="triggerId">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Action</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <label class="mx-3" for="switch">
+        <h5>In Stock Only</h5>
+      </label>
+      <label class="switch">
+        <input type="checkbox" id="switch">
+        <span class="slider round"></span>
+      </label>
+    </div>
+  </div>
+  <div class="row mt-3 itembox justify-content-around">
+    <div class="m-2 col-3" *ngFor="let item of JsonData[CatIndex].subcategories[SubIndex].items; let i = index">
+      <div class="card" *ngIf="JsonData[CatIndex].subcategories[SubIndex].items[i].stock > 0; else elseblock">
+        <div class="card-body">
+          <h5 class="card-title">{{item.name}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{item.price}}€</h6>
+          <img src="{{item.imagelink}}">
+        </div>
+      </div>
+      <ng-template #elseblock>
+      </ng-template>
+    </div>
+  </div>

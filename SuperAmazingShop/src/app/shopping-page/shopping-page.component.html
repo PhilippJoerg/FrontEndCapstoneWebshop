@@ -28,7 +28,7 @@
       <app-subcategory [CatIndex]="catIndex" [JsonData]="JSONData"></app-subcategory>
     </div>
     <div *ngIf="subcategorie !== null">
-      <app-detail></app-detail>
+      <app-product-category [CatIndex]="catIndex" [JsonData]="JSONData" [SubIndex]="subIndex"></app-product-category>
     </div>
   </div>
 </div>
