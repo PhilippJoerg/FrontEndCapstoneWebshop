@@ -1,34 +1,21 @@
-import { Component, OnInit, Injectable, OnChanges } from '@angular/core';
-import { GetdataService } from '../getdata.service';
+import { Component, OnInit, OnChanges, Injectable, Input } from '@angular/core';
 import { ICategory } from '../category';
 
 @Component({
   selector: 'app-subcategory',
-  templateUrl: './subcategory.component.html',
-  styleUrls: ['./subcategory.component.scss']
+  // templateUrl: './subcategory.component.html',
+  styleUrls: ['./subcategory.component.scss'],
+  template: '<div class="row"><div class="col-3 m-4 p-5 card" *ngFor="let test of JsonData[CatIndex].subcategories">{{test.name}}</div></div>'
 })
 @Injectable()
 export class SubcategoryComponent implements OnInit, OnChanges {
-  JsonData: ICategory;
-  CatIndex: number;
-  SubIndex: number;
-  constructor(public data: GetdataService) {
-  }
-
-  setCatIndex(catIndex) {
-    this.CatIndex = catIndex;
-  }
-  setSubIndex(subIndex) {
-    this.SubIndex = subIndex;
+  @Input() CatIndex: number;
+  @Input() SubIndex: number;
+  @Input() JsonData: ICategory;
+  constructor() {
   }
   ngOnInit() {
-    this.data.getData().subscribe((value: ICategory) => {
-      this.JsonData = value;
-      console.log(this.JsonData);
-    });
-
   }
   ngOnChanges() {
   }
-
 }

@@ -1,7 +1,6 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit, Injector } from '@angular/core';
 import { GetdataService } from '../getdata.service';
 import { ICategory } from '../category';
-import { SubcategoryComponent } from '../subcategory/subcategory.component';
 
 @Component({
   selector: 'app-shopping-page',
@@ -15,21 +14,19 @@ export class ShoppingPageComponent implements OnInit {
   catIndex: number;
   subcategorie: string;
   subIndex: number;
-  constructor(public data: GetdataService, public sub: SubcategoryComponent) {
+  constructor(public data: GetdataService) {
     this.category = null;
     this.subcategorie = null;
   }
   ngOnInit() {
     this.data.getData().subscribe((value: ICategory) => {
       this.JSONData = value;
-      console.log(this.JSONData);
     });
   }
   setCat(value: string, index: number) {
     this.category = value;
     this.subcategorie = null;
     this.catIndex = index;
-    this.sub.setCatIndex(this.catIndex);
   }
   setSubCat(value: string, index: number) {
     this.subcategorie = value;
