@@ -1,3 +1,21 @@
-<p>
-  detail works!
-</p>
+<div class="row align-items-center">
+  <div class="col-6 textbox">
+    <img src="{{picture}}" class="responsive">
+  </div>
+  <div class="col-6 textbox text-center ">
+    <div class="jumbotron">
+      <h1 class="display-3">{{JSONData[catIndex].subcategories[subIndex].items[itemIndex].name}}</h1>
+      <p class="lead">
+        <ngb-rating [rate]="JSONData[catIndex].subcategories[subIndex].items[itemIndex].rating"></ngb-rating>
+      </p>
+      <hr class="my-2">
+      <h4>{{JSONData[catIndex].subcategories[subIndex].items[itemIndex].price}}€</h4>
+      <h5 class="card m-5">{{JSONData[catIndex].subcategories[subIndex].items[itemIndex].description}}</h5>
+      <label for="quantity">Quantity</label>
+      <input class="m-2 counter text-center" type="number" id="quantity" value="1">
+      <p class="lead">
+        <a class="btn btn-primary btn-lg mt-5" (click)="sendData()" href="/home/shopping/cart" role="button">Add to Chart</a>
+      </p>
+    </div>
+  </div>
+</div>

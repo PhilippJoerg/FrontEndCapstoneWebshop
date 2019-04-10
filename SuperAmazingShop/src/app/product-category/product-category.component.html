@@ -1,19 +1,20 @@
 <div class="container my-2">
-  <div class="row box justify-content-around align-items-center">
+  <div class="row box align-items-center">
     <div class="col-3">
-      {{JsonData[CatIndex].subcategories[SubIndex].name}}
+      <h4>{{JsonData[CatIndex].subcategories[SubIndex].name}}</h4>
     </div>
     <div class="col-5">
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          Dropdown
+          Order By
         </button>
         <div class="dropdown-menu" aria-labelledby="triggerId">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" (click)="order('name', false)">Name</a>
+          <a class="dropdown-item" (click)="order('name', true)">Name Descending</a>
+          <a class="dropdown-item" (click)="order('price', false)">Price</a>
+          <a class="dropdown-item" (click)="order('price', true)">Price Descending</a>
+          <a class="dropdown-item" (click)="order(' ', false)">default</a>
         </div>
       </div>
     </div>
@@ -22,21 +23,30 @@
         <h5>In Stock Only</h5>
       </label>
       <label class="switch">
-        <input type="checkbox" id="switch">
+        <input type="checkbox" id="switch" (click)="btnToggle()" [checked]="checked">
         <span class="slider round"></span>
       </label>
     </div>
   </div>
   <div class="row mt-3 itembox justify-content-around">
-    <div class="m-2 col-3" *ngFor="let item of JsonData[CatIndex].subcategories[SubIndex].items; let i = index">
-      <div class="card" *ngIf="JsonData[CatIndex].subcategories[SubIndex].items[i].stock > 0; else elseblock">
-        <div class="card-body">
-          <h5 class="card-title">{{item.name}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{{item.price}}€</h6>
-          <img src="{{item.imagelink}}">
+    <ng-container *ngIf="JsonData[CatIndex].subcategories[SubIndex].items[0]; else test">
+      <ng-container
+        *ngFor="let item of JsonData[CatIndex].subcategories[SubIndex].items| orderBy:orderName:reverse; let i = index">
+        <div class="m-2 col-3 card" *ngIf="item.stock > InStock">
+          <a [routerLink]="['/home/shopping/detail', CatIndex, SubIndex, item.name]">
+            <div class="card-body">
+              <h5 class="card-title">{{item.name}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{item.price}}€</h6>
+              <div class="row">
+                <img src="{{item.imagelink}}" class="col-7">
+                <button class="col-5 btn btn-dark">Add</button>
+              </div>
+            </div>
+          </a>
         </div>
-      </div>
-      <ng-template #elseblock>
-      </ng-template>
-    </div>
+      </ng-container>
+    </ng-container>
+    <ng-template #test>
+      <h1>Out of Stock!</h1>
+    </ng-template>
   </div>

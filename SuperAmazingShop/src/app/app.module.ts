@@ -10,11 +10,14 @@ import { ShoppingPageComponent } from './shopping-page/shopping-page.component';
 import { SubcategoryComponent } from './subcategory/subcategory.component';
 import { DetailComponent } from './detail/detail.component';
 import { ProductCategoryComponent } from './product-category/product-category.component';
+import { OrderByPipe } from './order-by.pipe';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 @NgModule({
-  declarations: [AppComponent, HomePageComponent, ShoppingPageComponent, SubcategoryComponent, DetailComponent, ProductCategoryComponent],
-  imports: [BrowserModule, NgbModule , AppRoutingModule, HttpClientModule],
+  declarations: [AppComponent, HomePageComponent, ShoppingPageComponent, SubcategoryComponent, DetailComponent,
+    ProductCategoryComponent, OrderByPipe, ShoppingCartComponent],
+  imports: [BrowserModule, NgbModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

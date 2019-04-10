@@ -1,4 +1,4 @@
-import { Component, Injectable, OnInit, Injector } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { GetdataService } from '../getdata.service';
 import { ICategory } from '../category';
 
