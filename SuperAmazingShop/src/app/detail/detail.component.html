@@ -12,7 +12,7 @@
       <h4>{{JSONData[catIndex].subcategories[subIndex].items[itemIndex].price}}€</h4>
       <h5 class="card m-5">{{JSONData[catIndex].subcategories[subIndex].items[itemIndex].description}}</h5>
       <label for="quantity">Quantity</label>
-      <input class="m-2 counter text-center" [(ngModel)]="quantity" type="number" id="quantity" value="1">
+      <input class="m-2 counter text-center" #quantity type="number" id="quantity" value="1">
       <hr>
       <ng-template #content let-modal>
         <div class="modal-header">
@@ -31,7 +31,7 @@
           <a class="btn btn-outline-dark" (click)="modal.close()" href="/home/shopping/cart">Go to Cart</a>
         </div>
       </ng-template>
-      <button class="btn btn-lg btn-outline-primary mt-5" (click)="sendData()" (click)="open(content)">Add to Chart</button>
+      <button class="btn btn-lg btn-outline-primary mt-5" (click)="sendData(quantity.value)" (click)="open(content)">Add to Cart</button>
     </div>
   </div>
 </div>

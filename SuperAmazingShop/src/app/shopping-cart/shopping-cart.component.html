@@ -5,20 +5,20 @@
         <ng-container *ngFor="let item of Items; let i = index">
           <div class="row">
             <div class="col-3">
+              <button (click)=delItems(i)>X</button>
               {{item.name}}
             </div>
             <div class="col-4">
               {{item.description}}
             </div>
             <div class="col-2">
-              {{item.price}}€
+              {{item.price|number}}€
             </div>
             <div class="col-1">
-
+              {{item.quantaty}}
             </div>
             <div class="col-2">
-
-              <button (click)=delItems(i)>X</button>
+              {{item.totalPrice|number}}€
             </div>
           </div>
         </ng-container>
@@ -26,27 +26,28 @@
       <ng-template #test>
         <div class="row">
           <div class="col-3">
+            <button (click)=delItems(i)>X</button>
             {{Items.name}}
           </div>
           <div class="col-4">
             {{Items.description}}
           </div>
           <div class="col-2">
-            {{Items.price}}€
+            {{Items.price|number}}€
           </div>
           <div class="col-2">
-
+            {{item.quantaty}}
           </div>
           <div class="col-1">
-            <button (click)=delItems(i)>X</button>
+            {{item.totalPrice|number}}€
           </div>
         </div>
       </ng-template>
-      <div class="float-right">Subtotal: {{total}}€</div>
+      <div class="float-right">Subtotal: {{total|number}}€</div>
       <button (click)="delAll()">del all</button>
     </div>
     <div class="col-6 box">
-      
+
     </div>
   </div>
 </ng-container>

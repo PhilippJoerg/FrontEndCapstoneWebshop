@@ -8,4 +8,5 @@ export interface IItems {
     category: string;
     subcategory: string;
     quantaty?: number;
+    totalPrice?: number;
 }

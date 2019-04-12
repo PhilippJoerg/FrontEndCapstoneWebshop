@@ -21,18 +21,19 @@ export class DetailComponent implements OnInit, OnDestroy {
   JSONData: ICategory;
   picture: string;
   closeResult: string;
-  quantity: number;
   constructor(private route: ActivatedRoute, private data: GetdataService, rating: NgbRatingConfig,
-    public paramData: ParamDataService, public app: AppComponent, private modalService: NgbModal) {
+              public paramData: ParamDataService, public app: AppComponent, private modalService: NgbModal) {
     rating.max = 5;
     rating.readonly = true;
     this.itemIndex = 0;
   }
 
-  sendData() {
-    this.JSONData[this.catIndex].subcategories[this.subIndex].items[this.itemIndex].quantaty = this.getQuantaty();
+  sendData(quantaty: number) {
+    this.JSONData[this.catIndex].subcategories[this.subIndex].items[this.itemIndex].quantaty = quantaty;
     this.paramData.storeItems(this.JSONData[this.catIndex].subcategories[this.subIndex].items[this.itemIndex]);
-    this.app.itemscount++;
+    for (let i = 0; i < quantaty; i++) {
+      this.app.itemscount++;
+    }
   }
   ngOnInit() {
     this.data.getData().subscribe((value: ICategory) => {
@@ -53,9 +54,6 @@ export class DetailComponent implements OnInit, OnDestroy {
     while (this.JSONData[this.catIndex].subcategories[this.subIndex].items[this.itemIndex].name !== this.itemName) {
       this.itemIndex++;
     }
-  }
-  getQuantaty() {
-    return this.quantity;
   }
   open(content) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
