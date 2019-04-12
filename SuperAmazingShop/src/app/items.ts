@@ -7,4 +7,5 @@ export interface IItems {
     stock: string;
     category: string;
     subcategory: string;
+    quantaty?: number;
 }

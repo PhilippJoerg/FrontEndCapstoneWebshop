@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ICategory } from '../category';
+import { ParamDataService } from '../param-data.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-product-category',
@@ -9,16 +11,18 @@ import { ICategory } from '../category';
 export class ProductCategoryComponent implements OnInit {
   @Input() CatIndex: number;
   @Input() SubIndex: number;
-  @Input() JsonData: ICategory;
+  @Input() JSONData: ICategory;
   InStock: number;
   checked: boolean;
   orderName: string;
   reverse: boolean;
-  constructor() {
+  ItemIndex: number;
+  constructor(public paramData: ParamDataService, public app: AppComponent) {
     this.InStock = -1;
     this.checked = false;
     this.orderName = ' ';
     this.reverse = false;
+    this.ItemIndex = 0;
   }
   ngOnInit() {
   }
@@ -35,5 +39,12 @@ export class ProductCategoryComponent implements OnInit {
       this.checked = true;
     }
   }
-
+  sendData(cat: number, sub: number, itemName: string) {
+    this.ItemIndex = 0;
+    while (this.JSONData[this.CatIndex].subcategories[this.SubIndex].items[this.ItemIndex].name !== itemName) {
+      this.ItemIndex++;
+    }
+    this.paramData.storeItems(this.JSONData[this.CatIndex].subcategories[this.SubIndex].items[this.ItemIndex]);
+    this.app.itemscount++;
+  }
 }

@@ -12,10 +12,26 @@
       <h4>{{JSONData[catIndex].subcategories[subIndex].items[itemIndex].price}}€</h4>
       <h5 class="card m-5">{{JSONData[catIndex].subcategories[subIndex].items[itemIndex].description}}</h5>
       <label for="quantity">Quantity</label>
-      <input class="m-2 counter text-center" type="number" id="quantity" value="1">
-      <p class="lead">
-        <a class="btn btn-primary btn-lg mt-5" (click)="sendData()" href="/home/shopping/cart" role="button">Add to Chart</a>
-      </p>
+      <input class="m-2 counter text-center" [(ngModel)]="quantity" type="number" id="quantity" value="1">
+      <hr>
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Go on Shopping?</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h2>Go to Cart or go on Shopping?</h2>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" aria-label="Close" (click)="modal.dismiss()">
+            Go on Shopping
+          </button>
+          <a class="btn btn-outline-dark" (click)="modal.close()" href="/home/shopping/cart">Go to Cart</a>
+        </div>
+      </ng-template>
+      <button class="btn btn-lg btn-outline-primary mt-5" (click)="sendData()" (click)="open(content)">Add to Chart</button>
     </div>
   </div>
 </div>

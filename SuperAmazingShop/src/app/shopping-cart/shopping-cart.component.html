@@ -1,3 +1,55 @@
-<div *ngFor="let item of Items">
-  {{item.name}}
-</div>
+<ng-container *ngIf="Items; else elseblock">
+  <div class="row align-self-center">
+    <div class="col-6 box">
+      <ng-container *ngIf="Items.length !== undefined; else test">
+        <ng-container *ngFor="let item of Items; let i = index">
+          <div class="row">
+            <div class="col-3">
+              {{item.name}}
+            </div>
+            <div class="col-4">
+              {{item.description}}
+            </div>
+            <div class="col-2">
+              {{item.price}}€
+            </div>
+            <div class="col-1">
+
+            </div>
+            <div class="col-2">
+
+              <button (click)=delItems(i)>X</button>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-template #test>
+        <div class="row">
+          <div class="col-3">
+            {{Items.name}}
+          </div>
+          <div class="col-4">
+            {{Items.description}}
+          </div>
+          <div class="col-2">
+            {{Items.price}}€
+          </div>
+          <div class="col-2">
+
+          </div>
+          <div class="col-1">
+            <button (click)=delItems(i)>X</button>
+          </div>
+        </div>
+      </ng-template>
+      <div class="float-right">Subtotal: {{total}}€</div>
+      <button (click)="delAll()">del all</button>
+    </div>
+    <div class="col-6 box">
+      
+    </div>
+  </div>
+</ng-container>
+<ng-template #elseblock>
+  <h1>You added nothing to your cart yet, go Shopping!</h1>
+</ng-template>

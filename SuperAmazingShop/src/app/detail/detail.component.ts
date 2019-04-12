@@ -3,8 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { ICategory } from '../category';
 import { GetdataService } from '../getdata.service';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
-import { config } from 'rxjs';
 import { ParamDataService } from '../param-data.service';
+import { AppComponent } from '../app.component';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-detail',
@@ -19,14 +20,19 @@ export class DetailComponent implements OnInit, OnDestroy {
   itemName: string;
   JSONData: ICategory;
   picture: string;
-  constructor(private route: ActivatedRoute, private data: GetdataService, rating: NgbRatingConfig, public paramData: ParamDataService) {
+  closeResult: string;
+  quantity: number;
+  constructor(private route: ActivatedRoute, private data: GetdataService, rating: NgbRatingConfig,
+    public paramData: ParamDataService, public app: AppComponent, private modalService: NgbModal) {
     rating.max = 5;
     rating.readonly = true;
     this.itemIndex = 0;
   }
 
   sendData() {
+    this.JSONData[this.catIndex].subcategories[this.subIndex].items[this.itemIndex].quantaty = this.getQuantaty();
     this.paramData.storeItems(this.JSONData[this.catIndex].subcategories[this.subIndex].items[this.itemIndex]);
+    this.app.itemscount++;
   }
   ngOnInit() {
     this.data.getData().subscribe((value: ICategory) => {
@@ -48,4 +54,11 @@ export class DetailComponent implements OnInit, OnDestroy {
       this.itemIndex++;
     }
   }
+  getQuantaty() {
+    return this.quantity;
+  }
+  open(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+  }
+
 }
