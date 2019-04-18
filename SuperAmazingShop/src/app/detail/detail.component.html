@@ -1,8 +1,8 @@
 <div class="row align-items-center">
-  <div class="col-6 textbox">
+  <div class="col-12 col-lg-6">
     <img src="{{picture}}" class="responsive">
   </div>
-  <div class="col-6 textbox text-center ">
+  <div class="col-12 col-lg-6  text-center ">
     <div class="jumbotron">
       <h1 class="display-3">{{JSONData[catIndex].subcategories[subIndex].items[itemIndex].name}}</h1>
       <p class="lead">
@@ -31,7 +31,8 @@
           <a class="btn btn-outline-dark" (click)="modal.close()" href="/home/shopping/cart">Go to Cart</a>
         </div>
       </ng-template>
-      <button class="btn btn-lg btn-outline-primary mt-5" (click)="sendData(quantity.value)" (click)="open(content)">Add to Cart</button>
+      <button class="btn btn-lg btn-outline-primary mt-5" (click)="sendData(quantity.value)" (click)="open(content)">Add
+        to Cart</button>
     </div>
   </div>
 </div>

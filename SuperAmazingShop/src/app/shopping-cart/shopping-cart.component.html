@@ -1,11 +1,13 @@
 <ng-container *ngIf="Items.length !== 0; else elseblock">
-  <div class="row align-self-center">
-    <div class="col-12 col-lg-6 box">
+  <div class="row background align-self-center">
+    <div class="col-12 col-lg-6 ">
       <ng-container *ngIf="Items.length !== undefined; else test">
         <ng-container *ngFor="let item of Items; let i = index">
-          <div class="row">
-            <div class="col-3">
+          <div class="row item">
+            <div class="col-1">
               <button (click)=delItems(i)>X</button>
+            </div>
+            <div class="col-4">
               {{item.name}}
             </div>
             <div class="col-4">
@@ -17,8 +19,8 @@
             <div class="col-1">
               {{item.quantaty}}
             </div>
-            <div class="col-2">
-              {{item.totalPrice|number}}€
+            <div class="col-12">
+              Item Total: {{item.totalPrice|number}}€
             </div>
           </div>
         </ng-container>
@@ -45,7 +47,7 @@
       </ng-template>
       <div class="float-right mt-5">Subtotal: {{total|number}}€</div>
     </div>
-    <div class="col-12 col-lg-6 box text-center">
+    <div class="col-12 col-lg-6  text-center">
       <h3>Cart Summary</h3>
       <div class="row">
         <p class="col-4">Subtotal</p>
@@ -64,9 +66,54 @@
         <p class="col-8">{{totaltoal|number}}€</p>
       </div>
       <h5>Free Shipping on orders over 20€!</h5>
+      <div class="text-center">
+        <a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#modalBuyForm">
+          Buy Now!</a>
+      </div>
     </div>
   </div>
 </ng-container>
 <ng-template #elseblock>
   <h1>You added nothing to your cart yet, go Shopping!</h1>
 </ng-template>
+<div class="modal fade" id="modalBuyForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Your Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fa fa-user "></i>
+          <input type="text" id="form34" class="form-control ">
+          <label data-error="wrong" data-success="right" for="form34">Your name</label>
+        </div>
+
+        <div class="md-form mb-5">
+          <i class="fa fa-envelope "></i>
+          <input type="email" id="form29" class="form-control ">
+          <label data-error="wrong" data-success="right" for="form29">Your email</label>
+        </div>
+
+        <div class="md-form mb-5">
+          <i class="fa fa-id-badge"></i>
+          <input type="text" id="form32" class="form-control ">
+          <label data-error="wrong" data-success="right" for="form32">Your address</label>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-credit-card"></i>
+          <input type="text" id="form32" class="form-control ">
+          <label data-error="wrong" data-success="right" for="form8">Credit Card Information</label>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-unique">Buy Now <i class="fa fa-paper-plane-o ml-1"></i></button>
+      </div>
+    </div>
+  </div>
+</div>

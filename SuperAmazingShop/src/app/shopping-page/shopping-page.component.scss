@@ -1,5 +1,12 @@
 .box{
-    border:1px solid black;
     line-height: 4vh;
-    height: 75vh;
+}
+.background{
+    border: 1px solid darkgray;
+    border-radius: 25px;
+    background-color: darkgray;
+}
+.text{
+    text-decoration: none;
+    color: black;
 }

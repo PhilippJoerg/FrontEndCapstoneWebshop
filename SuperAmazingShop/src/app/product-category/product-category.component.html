@@ -1,4 +1,4 @@
-<div class="container my-2">
+<div class="container my-5">
   <div class="row box align-items-center">
     <div class="col-lg-3 col-6">
       <h4>{{JSONData[CatIndex].subcategories[SubIndex].name}}</h4>
@@ -36,7 +36,7 @@
         *ngFor="let item of JSONData[CatIndex].subcategories[SubIndex].items| orderBy:orderName:reverse; let i = index">
         <div class="m-2 col-12 col-lg-3 card" *ngIf="item.stock > InStock">
           <div class="card-body">
-            <a [routerLink]="['/home/shopping/detail', CatIndex, SubIndex, item.name]">
+            <a class="text" [routerLink]="['/home/shopping/detail', CatIndex, SubIndex, item.name]">
               <h5 class="card-title">{{item.name}}</h5>
               <h6 class="card-subtitle mb-2 text-muted">{{item.price}}€</h6>
             </a>
@@ -52,3 +52,4 @@
       <h1>Out of Stock!</h1>
     </ng-template>
   </div>
+</div>

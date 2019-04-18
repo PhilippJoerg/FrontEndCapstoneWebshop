@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col-lg-3 col-12 box">
+<div class="row background">
+  <div class="col-lg-3 col-12 box my-4">
     <div id="accordion">
       <div *ngFor="let cat of JSONData; let i = index;">
         <div class="card  mt-3">
@@ -24,10 +24,10 @@
     </div>
   </div>
   <div class="col-lg-9 col-12 box">
-    <div *ngIf="category !== null">
+    <div class="mt-5" *ngIf="category !== null">
       <app-subcategory [CatIndex]="catIndex" [JsonData]="JSONData"></app-subcategory>
     </div>
-    <div *ngIf="subcategorie !== null">
+    <div class="mt-5" *ngIf="subcategorie !== null">
       <app-product-category [CatIndex]="catIndex" [JSONData]="JSONData" [SubIndex]="subIndex"></app-product-category>
     </div>
   </div>

@@ -25,7 +25,6 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {
     this.data.getData().subscribe((value: ICategory) => {
       this.JSONData = value;
-      console.log(this.JSONData);
       this.getItemData();
     });
     $('.carousel').carousel({ interval: 3000 });
