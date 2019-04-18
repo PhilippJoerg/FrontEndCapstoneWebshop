@@ -1,6 +1,6 @@
 import { IItems } from './items';
 
 export interface ISubcategory {
-        name: string;
+  name: string;
   items: (IItems | IItems)[];
 }

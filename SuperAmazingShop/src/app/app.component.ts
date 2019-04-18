@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ParamDataService } from './param-data.service';
@@ -8,19 +8,19 @@ import { ParamDataService } from './param-data.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnDestroy, OnInit {
   title = 'SuperAmazingShop';
   itemscount = 0;
   constructor(
     public router: Router,
     public location: Location,
     public paramData: ParamDataService
-  ) { this.getItemCount(); }
-  getItemCount() {
-    this.itemscount = this.paramData.getItemCount();
-  }
+  ) {  }
   backClicked() {
     this.location.back();
+  }
+  ngOnInit() {
+    this.itemscount = this.paramData.getItemCount();
   }
   ngOnDestroy() {
     this.paramData.clearCart();

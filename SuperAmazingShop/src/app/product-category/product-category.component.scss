@@ -1,16 +1,16 @@
 .box{
     border:1px solid black;
     line-height: 4vh;
-    height: 8vh;
 }
 .itembox{
     border:1px solid black;
     max-height: 62vh;
     overflow-y: scroll;
 }
-img{
-    height: 50px;
-    width: 50px;
+.responsive{
+  width: 100%;
+  max-width: 60px;
+  height: 60px;
 }
 a{
   color: black;

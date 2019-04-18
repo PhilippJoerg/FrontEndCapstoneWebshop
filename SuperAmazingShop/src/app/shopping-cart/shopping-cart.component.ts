@@ -13,18 +13,34 @@ import { CommonModule } from '@angular/common';
 export class ShoppingCartComponent implements OnInit {
   Items: IItems[] = [];
   total: number;
-  constructor(public paramData: ParamDataService, public app: AppComponent, public common: CommonModule) { }
+  totaltoal: number;
+  shipping: number;
+  tax: number;
+  constructor(public paramData: ParamDataService, public app: AppComponent, public common: CommonModule) {
+  }
 
   ngOnInit() {
     this.Items = this.paramData.getItems();
-    this.getTotal();
     this.chainItems();
+    this.calculate();
+  }
+  calculate() {
+    if (this.total < 20) {
+      this.shipping = 4.99;
+    } else {
+      this.shipping = 0;
+    }
+    this.tax = this.total * 0.19;
+    this.totaltoal = this.total + this.shipping;
   }
   delItems(index: number) {
+    for (let i = 0; i < this.Items[index].quantaty; i++) {
+      this.app.itemscount--;
+    }
     this.paramData.delItems(index);
     this.Items = this.paramData.getItems();
-    this.app.itemscount--;
     this.getTotal();
+    this.calculate();
   }
   delAll() {
     this.paramData.clearCart();
@@ -33,41 +49,48 @@ export class ShoppingCartComponent implements OnInit {
     this.getTotal();
   }
   getTotal() {
-    for (const item of this.Items) {
-      if (item.quantaty !== undefined) {
-        item.totalPrice = item.price * item.quantaty;
-      } else {
-        item.totalPrice = item.price;
-        item.quantaty = 1;
-      }
-    }
-    let i = 0;
-    this.total = 0;
-    const temp: any = this.Items;
     if (this.Items) {
-      if (this.Items.length === undefined) {
-        this.total = temp.price * temp.quantaty;
-      } else {
+      if (this.Items.length !== undefined) {
         for (const item of this.Items) {
-          this.total += item.price * item.quantaty;
-          Math.round(this.total);
-          i++;
+          if (item.quantaty !== undefined) {
+            item.totalPrice = item.price * item.quantaty;
+          } else {
+            item.totalPrice = item.price;
+            item.quantaty = 1;
+          }
+        }
+      }
+      let i = 0;
+      this.total = 0;
+      const temp: any = this.Items;
+      if (this.Items) {
+        if (this.Items.length === undefined) {
+          this.total = temp.price * temp.quantaty;
+        } else {
+          for (const item of this.Items) {
+            this.total += item.price * item.quantaty;
+            Math.round(this.total);
+            i++;
+          }
         }
       }
     }
   }
   chainItems() {
-    for (let i = 0; i < this.Items.length; i++) {
-      for (let j = 0; j < this.Items.length; j++) {
-        if (i !== j) {
-          if (this.Items[i].name === this.Items[j].name) {
-            this.Items[i].quantaty += this.Items[j].quantaty;
-            this.Items.splice(j, 1);
-            i = 0;
+    if (this.Items) {
+      for (let i = 0; i < this.Items.length; i++) {
+        for (let j = 0; j < this.Items.length; j++) {
+          if (i !== j) {
+            if (this.Items[i].name === this.Items[j].name) {
+              this.Items[i].quantaty = +this.Items[i].quantaty + +this.Items[j].quantaty;
+              this.Items.splice(j, 1);
+              i = 0;
+            }
           }
         }
       }
+      this.paramData.storeData(this.Items);
+      this.getTotal();
     }
-    this.getTotal();
   }
 }

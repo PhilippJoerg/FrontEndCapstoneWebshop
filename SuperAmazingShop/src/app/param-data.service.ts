@@ -10,6 +10,10 @@ export class ParamDataService {
   Items: IItems[] = [];
   constructor() {
   }
+  storeData(Items: any) {
+    this.clearCart();
+    localStorage.setItem('cart', JSON.stringify(Items));
+  }
   storeItems(item: IItems) {
     this.Items = [];
     if (localStorage.getItem('cart') == null) {
@@ -42,10 +46,17 @@ export class ParamDataService {
   }
   getItemCount() {
     let temp: any;
-    let num: number;
+    let num = 0;
     temp = JSON.parse(localStorage.getItem('cart'));
     if (temp !== null) {
-      num = temp.length;
+      for (const item of temp) {
+        if (item.quantaty !== undefined) {
+          num = num + +item.quantaty;
+        } else {
+          item.quantaty = 1;
+          num = num + 1;
+        }
+      }
     } else {
       num = 0;
     }

@@ -39,11 +39,12 @@ export class ProductCategoryComponent implements OnInit {
       this.checked = true;
     }
   }
-  sendData(cat: number, sub: number, itemName: string) {
+  sendData(itemName: string) {
     this.ItemIndex = 0;
     while (this.JSONData[this.CatIndex].subcategories[this.SubIndex].items[this.ItemIndex].name !== itemName) {
       this.ItemIndex++;
     }
+    this.JSONData[this.CatIndex].subcategories[this.SubIndex].items[this.ItemIndex].quantaty = 1;
     this.paramData.storeItems(this.JSONData[this.CatIndex].subcategories[this.SubIndex].items[this.ItemIndex]);
     this.app.itemscount++;
   }

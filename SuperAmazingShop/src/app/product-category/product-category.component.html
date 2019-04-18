@@ -1,9 +1,9 @@
 <div class="container my-2">
   <div class="row box align-items-center">
-    <div class="col-3">
+    <div class="col-lg-3 col-6">
       <h4>{{JSONData[CatIndex].subcategories[SubIndex].name}}</h4>
     </div>
-    <div class="col-5">
+    <div class="col-lg-4 col-6">
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
@@ -18,7 +18,9 @@
         </div>
       </div>
     </div>
-    <div class="col-4">
+    <hr>
+    <hr>
+    <div class="col-lg-5 col-12">
       <label class="mx-3" for="switch">
         <h5>In Stock Only</h5>
       </label>
@@ -32,15 +34,15 @@
     <ng-container *ngIf="JSONData[CatIndex].subcategories[SubIndex].items[0]; else test">
       <ng-container
         *ngFor="let item of JSONData[CatIndex].subcategories[SubIndex].items| orderBy:orderName:reverse; let i = index">
-        <div class="m-2 col-3 card" *ngIf="item.stock > InStock">
+        <div class="m-2 col-12 col-lg-3 card" *ngIf="item.stock > InStock">
           <div class="card-body">
             <a [routerLink]="['/home/shopping/detail', CatIndex, SubIndex, item.name]">
               <h5 class="card-title">{{item.name}}</h5>
               <h6 class="card-subtitle mb-2 text-muted">{{item.price}}€</h6>
             </a>
             <div class="row">
-              <img src="{{item.imagelink}}" class="col-7">
-              <button class="col-5 btn btn-dark" (click)="sendData(CatIndex, SubIndex, item.name)">Add</button>
+              <img src="{{item.imagelink}}" class="col-6 responsive">
+              <button class="col-6 btn btn-dark" (click)="sendData(item.name)">Add</button>
             </div>
           </div>
         </div>
