@@ -31,7 +31,7 @@
                 <a [routerLink]="['/home/shopping/detail', rndCat[0], rndSub[0], Names[0]]">
                     <img src="{{Pictures[0]}}"
                         alt="{{JSONData[rndCat[0]].subcategories[rndSub[0]].items[rndItem[0]].name}}"
-                        class="responsive">
+                        class="d-block mx-auto responsive">
                 </a>
                 <div class="carousel-caption d-none d-md-block">
                     <h3 class="black">{{JSONData[rndCat[0]].subcategories[rndSub[0]].items[rndItem[0]].name}}</h3>
@@ -43,7 +43,7 @@
                 <a [routerLink]="['/home/shopping/detail', rndCat[1], rndSub[1], Names[1]]">
                     <img src="{{Pictures[1]}}"
                         alt="{{JSONData[rndCat[1]].subcategories[rndSub[1]].items[rndItem[1]].name}}"
-                        class="responsive"></a>
+                        class="d-block mx-auto responsive"></a>
                 <div class="carousel-caption d-none d-md-block">
                     <h3 class="black">{{JSONData[rndCat[1]].subcategories[rndSub[1]].items[rndItem[1]].name}}</h3>
                     <p class="black">{{JSONData[rndCat[1]].subcategories[rndSub[1]].items[rndItem[1]].description}}
@@ -54,7 +54,7 @@
                 <a [routerLink]="['/home/shopping/detail', rndCat[2], rndSub[2], Names[2]]">
                     <img src="{{Pictures[2]}}"
                         alt="{{JSONData[rndCat[2]].subcategories[rndSub[2]].items[rndItem[2]].name}}"
-                        class="responsive"></a>
+                        class="d-block mx-auto responsive"></a>
                 <div class="carousel-caption d-none d-md-block">
                     <h3 class="black">{{JSONData[rndCat[2]].subcategories[rndSub[2]].items[rndItem[2]].name}}</h3>
                     <p class="black">{{JSONData[rndCat[2]].subcategories[rndSub[2]].items[rndItem[2]].description}}
@@ -65,7 +65,7 @@
                 <a [routerLink]="['/home/shopping/detail', rndCat[3], rndSub[3], Names[3]]">
                     <img src="{{Pictures[3]}}"
                         alt="{{JSONData[rndCat[3]].subcategories[rndSub[3]].items[rndItem[3]].name}}"
-                        class="responsive"></a>
+                        class="d-block mx-auto responsive"></a>
                 <div class="carousel-caption d-none d-md-block">
                     <h3 class="black">{{JSONData[rndCat[3]].subcategories[rndSub[3]].items[rndItem[3]].name}}</h3>
                     <p class="black">{{JSONData[rndCat[3]].subcategories[rndSub[3]].items[rndItem[3]].description}}
@@ -76,13 +76,13 @@
         <!-- -rubric02
       button that cycles to the left-->
         <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <i class="fa fa-arrow-left fa-2x text-dark"></i>
             <span class="sr-only">Previous</span>
         </a>
         <!-- -rubric03
       button that cycles to the right-->
         <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <i class="fa fa-arrow-right fa-2x text-dark"></i>
             <span class="sr-only">Next</span>
         </a>
     </div>
