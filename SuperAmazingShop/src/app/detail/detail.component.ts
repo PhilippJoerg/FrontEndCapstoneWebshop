@@ -27,7 +27,8 @@ export class DetailComponent implements OnInit, OnDestroy {
     rating.readonly = true;
     this.itemIndex = 0;
   }
-
+  // rubric44
+  // the function that is called when the user clicks the add button
   sendData(quantaty: number) {
     this.JSONData[this.catIndex].subcategories[this.subIndex].items[this.itemIndex].quantaty = quantaty;
     this.paramData.storeItems(this.JSONData[this.catIndex].subcategories[this.subIndex].items[this.itemIndex]);

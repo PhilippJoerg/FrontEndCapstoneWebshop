@@ -1,6 +1,8 @@
 <div class="row justify-content-around">
   <div class="card m-2 p-4 col-12 col-lg-3" *ngFor="let sub of JsonData[CatIndex].subcategories; let i = index;"
     attr.value="{{sub.name}}" (click)="subClick(value,i)">
+    <!-- rubric19
+    the menu that showes the diffrent categories -->
     <div class="card-body">
       <h5 class="card-title text-center">{{sub.name}}</h5>
     </div>

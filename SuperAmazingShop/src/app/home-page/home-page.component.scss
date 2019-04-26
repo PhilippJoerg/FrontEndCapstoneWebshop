@@ -1,6 +1,9 @@
 .responsive{
     width: auto;
-    height: 50vh;
+    height: 25vh;
+    @media (min-width: 768px) {
+        height: 50vh;
+    }
 }
 .black{
     color: black;

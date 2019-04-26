@@ -16,6 +16,8 @@ export class AppComponent implements OnDestroy, OnInit {
     public location: Location,
     public paramData: ParamDataService
   ) {  }
+  // rubric45
+  // the user gets back to where they came from
   backClicked() {
     this.location.back();
   }

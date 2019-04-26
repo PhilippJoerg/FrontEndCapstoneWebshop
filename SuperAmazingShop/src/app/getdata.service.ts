@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class GetdataService {
   constructor(private http: HttpClient) { }
-
+  // rubric81
+  // the data gets loaded by an http get
   public getData(): Observable<ICategory> {
     return this.http.get<ICategory>('https://webmppcapstone.blob.core.windows.net/data/itemsdata.json');
   }

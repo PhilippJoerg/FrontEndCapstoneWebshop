@@ -1,0 +1,57 @@
+<div id="ContactForm" role="dialog" aria-labelledby="myLabel" aria-hidden="true">
+  <div class="dialog" role="document">
+    <div class="content">
+      <div class="header text-center">
+        <h4 class="title w-100 font-weight-bold">Write to us</h4>
+      </div>
+      <form class="needs-validation" novalidate>
+        <div class="body mx-3 row">
+          <div class="col-6">
+            <div class="md-form mb-5">
+              <i class="fa fa-user prefix grey-text"></i>
+              <input #name type="text" id="validationCustom01" class="form-control validate" placeholder="John Doe"
+                required>
+              <label data-error="wrong" data-success="right" for="validationCustom01">Your name</label>
+            </div>
+            <div class="md-form mb-5">
+              <i class="fa fa-envelope prefix grey-text"></i>
+              <input #email type="email" id="validationCustom02" class="form-control validate"
+                placeholder="John@doe.com" required>
+              <label data-error="wrong" data-success="right" for="validationCustom02">Your email</label>
+            </div>
+            <div class="md-form mb-5">
+              <i class="fa fa-tag prefix grey-text"></i>
+              <input #subject type="text" id="validationCustom03" class="form-control validate"
+                placeholder="error on the cart" required>
+              <label data-error="wrong" data-success="right" for="validationCustom03">Subject</label>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="md-form">
+              <i class="fa fa-pencil prefix grey-text"></i>
+              <textarea #message type="text" id="validationCustom04" class="md-textarea form-control" rows="8"
+                placeholder="write us a message" required></textarea>
+              <label data-error="wrong" data-success="right" for="validationCustom04">Your message</label>
+            </div>
+            <div class="footer d-flex justify-content-center">
+              <!-- rubric59
+              the send button -->
+              <button class="btn btn-dark mb-5"
+                (click)="alert(name.value, email.value, subject.value, message.value)">Send <i
+                  class="fa fa-paper-plane-o ml-1"></i></button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- rubric58
+      an email and a phone number -->
+      <h3>Our Contact:</h3>
+      <div class="row">
+        <p class="col-2">Email:</p>
+        <p class="col-10">Philipp.Joerg@plan-b-gmbh.com</p>
+        <p class="col-2">Phone:</p>
+        <p class="col-10">0168/12385478</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,10 +13,11 @@ import { ProductCategoryComponent } from './product-category/product-category.co
 import { OrderByPipe } from './order-by.pipe';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [AppComponent, HomePageComponent, ShoppingPageComponent, SubcategoryComponent, DetailComponent,
-    ProductCategoryComponent, OrderByPipe, ShoppingCartComponent, AboutComponent],
+    ProductCategoryComponent, OrderByPipe, ShoppingCartComponent, AboutComponent, ContactComponent],
   imports: [BrowserModule, NgbModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]

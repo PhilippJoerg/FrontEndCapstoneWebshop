@@ -19,6 +19,8 @@
 <!-- -rubric01
   the carousel that cycles through 4 pictures -->
 <div class="row">
+    <!-- rubric11
+    the class "slide" is corresponding for the animated way of changing the image -->
     <div id="myCarousel" class="carousel slide mx-auto col-10" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -28,6 +30,8 @@
         </ol>
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
+                <!-- rubric09
+                if the user clickes on the picture he gets taken to the product page with the routerlink -->
                 <a [routerLink]="['/home/shopping/detail', rndCat[0], rndSub[0], Names[0]]">
                     <img src="{{Pictures[0]}}"
                         alt="{{JSONData[rndCat[0]].subcategories[rndSub[0]].items[rndItem[0]].name}}"
@@ -40,6 +44,8 @@
                 </div>
             </div>
             <div class="carousel-item">
+                 <!-- rubric09
+                if the user clickes on the picture he gets taken to the product page with the routerlink -->
                 <a [routerLink]="['/home/shopping/detail', rndCat[1], rndSub[1], Names[1]]">
                     <img src="{{Pictures[1]}}"
                         alt="{{JSONData[rndCat[1]].subcategories[rndSub[1]].items[rndItem[1]].name}}"
@@ -51,6 +57,8 @@
                 </div>
             </div>
             <div class="carousel-item">
+                 <!-- rubric09
+                if the user clickes on the picture he gets taken to the product page with the routerlink -->
                 <a [routerLink]="['/home/shopping/detail', rndCat[2], rndSub[2], Names[2]]">
                     <img src="{{Pictures[2]}}"
                         alt="{{JSONData[rndCat[2]].subcategories[rndSub[2]].items[rndItem[2]].name}}"
@@ -62,6 +70,8 @@
                 </div>
             </div>
             <div class="carousel-item">
+                 <!-- rubric09
+                if the user clickes on the picture he gets taken to the product page with the routerlink -->
                 <a [routerLink]="['/home/shopping/detail', rndCat[3], rndSub[3], Names[3]]">
                     <img src="{{Pictures[3]}}"
                         alt="{{JSONData[rndCat[3]].subcategories[rndSub[3]].items[rndItem[3]].name}}"
@@ -75,12 +85,16 @@
         </div>
         <!-- -rubric02
       button that cycles to the left-->
+        <!-- rubric07
+    the 'data-slide="prev"' controlls the carousel to slide to the left-->
         <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
             <i class="fa fa-arrow-left fa-2x text-dark"></i>
             <span class="sr-only">Previous</span>
         </a>
         <!-- -rubric03
       button that cycles to the right-->
+        <!-- rubric08
+    the 'data-slide="next"' controlls the carousel to slide to the right-->
         <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
             <i class="fa fa-arrow-right fa-2x text-dark"></i>
             <span class="sr-only">Next</span>
