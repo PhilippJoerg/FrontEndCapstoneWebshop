@@ -1,5 +1,7 @@
 <div class="row background">
   <div class="col-lg-3 col-12 box my-4">
+    <!-- rubric14
+    here is the controlls bar -->
     <div id="accordion">
       <div *ngFor="let cat of JSONData; let i = index;">
         <div class="card  mt-3">
@@ -14,7 +16,11 @@
           </div>
           <div id="collapse{{i}}" class="collapse" attr.aria-labelledby="heading{{i}}" data-parent="#accordion">
             <div class="card-body">
+              <!-- rubric25 
+              the dropdown of the available subcategories  -->
               <div *ngFor="let sub of cat.subcategories; let j = index;">
+                <!-- rubric26
+                the button that fills the grid with the clicked subcategory -->
                 <li><a attr.value="{{sub.name}}" (click)="setSubCat(value,j)">{{sub.name}}</a></li>
               </div>
             </div>

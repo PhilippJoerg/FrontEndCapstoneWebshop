@@ -1,10 +1,11 @@
+$color1: #e9ecef;
 .box{
     line-height: 4vh;
 }
 .background{
-    border: 1px solid darkgray;
+    border: 1px solid $color1;
     border-radius: 25px;
-    background-color: darkgray;
+    background-color: $color1;
 }
 .text{
     text-decoration: none;

@@ -1,0 +1,15 @@
+in some files no comments are allowed so I describe them in here:
+
+***************************************************************************************************************
+rubric13
+in the "../../angular.json" file the port is declared under the point 
+"projects":{
+    "architect":{
+        "serve":{
+            "options":{
+                "port": 8080
+            }
+        }
+    }
+}
+***************************************************************************************************************

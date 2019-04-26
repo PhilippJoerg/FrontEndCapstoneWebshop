@@ -33,6 +33,8 @@ export class ShoppingCartComponent implements OnInit {
     this.tax = this.total * 0.19;
     this.totaltoal = this.total + this.shipping;
   }
+  // rubric53 rubric54
+  // this function is called if the user deletes an item, with the function 'getTotal' and 'calclate' all the values are updated
   delItems(index: number) {
     for (let i = 0; i < this.Items[index].quantaty; i++) {
       this.app.itemscount--;
@@ -41,12 +43,6 @@ export class ShoppingCartComponent implements OnInit {
     this.Items = this.paramData.getItems();
     this.getTotal();
     this.calculate();
-  }
-  delAll() {
-    this.paramData.clearCart();
-    this.app.itemscount = 0;
-    this.Items = [];
-    this.getTotal();
   }
   getTotal() {
     if (this.Items) {
@@ -92,5 +88,28 @@ export class ShoppingCartComponent implements OnInit {
       this.paramData.storeData(this.Items);
       this.getTotal();
     }
+  }
+  alert(name: string, city: string, address: string, phnumber: string) {
+    // rubric52
+    // validation check for the checkout button
+    const forms = document.getElementsByClassName('needs-validation');
+    const validation = Array.prototype.filter.call(forms, (form) => {
+      form.addEventListener('submit', (event) => {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        } else {
+          // rubric51
+          // the alert that is created from the checkout button
+          alert('Your information was received, \nName: ' + name + '\nCity: ' + city + '\nAddress: ' + address
+            + '\nPhone Number: ' + phnumber + '\nTotal Cost: ' + this.totaltoal + '€');
+          const itemslength = this.Items.length;
+          for (let i = 0; i < itemslength; i++) {
+            this.delItems(0);
+          }
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
   }
 }

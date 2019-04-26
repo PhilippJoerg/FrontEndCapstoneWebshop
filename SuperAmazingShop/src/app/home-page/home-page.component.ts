@@ -29,6 +29,8 @@ export class HomePageComponent implements OnInit {
     });
     $('.carousel').carousel({ interval: 3000 });
 
+    // rubric10
+    // if the user toggles the toggleslide checkbox the slideshow pauses or cycles
     const $toggle = $('#toggleslide');
     $toggle.bind('click', () => {
       if ($toggle.hasClass('pause')) {

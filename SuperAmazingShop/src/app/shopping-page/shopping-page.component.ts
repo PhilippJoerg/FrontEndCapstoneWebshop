@@ -15,10 +15,12 @@ export class ShoppingPageComponent implements OnInit {
   subcategorie: string;
   subIndex: number;
   constructor(public data: GetdataService) {
-    this.category = null;
-    this.subcategorie = null;
   }
   ngOnInit() {
+    this.category = null;
+    this.subcategorie = localStorage.getItem('sub');
+    this.catIndex = +localStorage.getItem('catIndex');
+    this.subIndex = +localStorage.getItem('subIndex');
     this.data.getData().subscribe((value: ICategory) => {
       this.JSONData = value;
     });
@@ -27,10 +29,16 @@ export class ShoppingPageComponent implements OnInit {
     this.category = value;
     this.subcategorie = null;
     this.catIndex = index;
+    localStorage.setItem('cat', this.category);
+    localStorage.setItem('sub', this.subcategorie);
+    localStorage.setItem('catIndex', this.catIndex.toString());
   }
   setSubCat(value: string, index: number) {
     this.subcategorie = value;
     this.category = null;
     this.subIndex = index;
+    localStorage.setItem('cat', this.category);
+    localStorage.setItem('sub', this.subcategorie);
+    localStorage.setItem('subIndex', this.subIndex.toString());
   }
 }
