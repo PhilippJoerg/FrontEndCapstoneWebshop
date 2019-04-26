@@ -3,50 +3,28 @@
     <div class="col-12 col-lg-6 ">
       <!-- rubric47
       inside this ng-container you can see the information given -->
-      <ng-container *ngIf="Items.length !== undefined; else test">
-        <ng-container *ngFor="let item of Items; let i = index">
-          <div class="row item">
-            <div class="col-1">
-              <button (click)=delItems(i)>X</button>
-            </div>
-            <div class="col-4">
-              {{item.name}}
-            </div>
-            <div class="col-4">
-              {{item.description}}
-            </div>
-            <div class="col-2">
-              {{item.price|number}}€
-            </div>
-            <div class="col-1">
-              {{item.quantaty}}
-            </div>
-            <div class="col-12">
-              Item Total: {{item.totalPrice|number}}€
-            </div>
-          </div>
-        </ng-container>
-      </ng-container>
-      <ng-template #test>
-        <div class="row">
-          <div class="col-3">
+      <ng-container *ngFor="let item of Items; let i = index">
+        <div class="row item">
+          <div class="col-1">
             <button (click)=delItems(i)>X</button>
-            {{Items.name}}
+          </div>
+          <div class="col-3">
+            {{item.name}}
           </div>
           <div class="col-4">
-            {{Items.description}}
+            {{item.description}}
           </div>
           <div class="col-2">
-            {{Items.price|number}}€
+            {{item.price|number}}€
           </div>
           <div class="col-2">
-            {{items.quantaty}}
+            {{item.quantaty}}
           </div>
-          <div class="col-1">
-            {{items.totalPrice|number}}€
+          <div class="col-12">
+            Item Total: {{item.totalPrice|number}}€
           </div>
         </div>
-      </ng-template>
+      </ng-container>
       <div class="float-right mt-5">Subtotal: {{total|number}}€</div>
     </div>
     <!-- rubric49
@@ -107,23 +85,26 @@ I used a modal as a input for the shipping details -->
 
           <div class="md-form mb-5">
             <i class="fa fa-id-badge"></i>
-            <input #address type="text" id="validationCustom04" class="form-control " placeholder="Centre St. 44" required>
+            <input #address type="text" id="validationCustom04" class="form-control " placeholder="Centre St. 44"
+              required>
             <label for="validationCustom04">Your address</label>
           </div>
 
           <div class="md-form">
             <i class="fa fa-phone"></i>
-            <input #number type="number" id="validationCustom05" class="form-control " placeholder="0123/456789" required>
+            <input #number type="number" id="validationCustom05" class="form-control " placeholder="0123/456789"
+              required>
             <label for="validationCustom05">Phone number</label>
           </div>
 
         </div>
         <div class="modal-footer d-flex justify-content-center">
-            <!-- rubric50
+          <!-- rubric50
             the checkout button  -->
-            <button type="submit" class="btn btn-unique" (click)="alert(name.value,city.value,address.value,number.value)">Buy Now
-              <i class="fa fa-paper-plane-o ml-1"></i></button>
-          </div>
+          <button type="submit" class="btn btn-unique"
+            (click)="alert(name.value,city.value,address.value,number.value)">Buy Now
+            <i class="fa fa-paper-plane-o ml-1"></i></button>
+        </div>
       </form>
     </div>
   </div>
