@@ -49,13 +49,17 @@ export class ParamDataService {
     let num = 0;
     temp = JSON.parse(localStorage.getItem('cart'));
     if (temp !== null) {
-      for (const item of temp) {
-        if (item.quantaty !== undefined) {
-          num = num + +item.quantaty;
-        } else {
-          item.quantaty = 1;
-          num = num + 1;
+      if (temp.length !== undefined) {
+        for (const item of temp) {
+          if (item.quantaty !== undefined) {
+            num = num + +item.quantaty;
+          } else {
+            item.quantaty = 1;
+            num = num + 1;
+          }
         }
+      } else {
+        num = temp.quantaty;
       }
     } else {
       num = 0;

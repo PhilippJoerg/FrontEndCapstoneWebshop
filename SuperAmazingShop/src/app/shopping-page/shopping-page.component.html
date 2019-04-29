@@ -30,11 +30,11 @@
     </div>
   </div>
   <div class="col-lg-9 col-12 box">
-    <div class="mt-5" *ngIf="category !== null">
+    <div class="my-5" *ngIf="category !== null">
       <app-subcategory [CatIndex]="catIndex" [JsonData]="JSONData"></app-subcategory>
     </div>
-    <div class="mt-5" *ngIf="subcategorie !== null">
-      <app-product-category [CatIndex]="catIndex" [JSONData]="JSONData" [SubIndex]="subIndex"></app-product-category>
+    <div class="my-5" *ngIf="subcategorie !== null">
+      <app-product-category [CatIndex]="catIndex" [SubIndex]="subIndex"></app-product-category>
     </div>
   </div>
 </div>

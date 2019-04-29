@@ -1,13 +1,13 @@
 <div class="container my-5">
-  <div class="row box align-items-center">
+  <div class="row box align-items-center text-center">
     <div class="col-lg-3 col-6">
       <!-- rubric15 
       the category name -->
       <!-- rubric27 
       the changing name of the category -->
-      <h4>{{JSONData[CatIndex].subcategories[SubIndex].name}}</h4>
+      <h4>{{JsonData[CatIndex].subcategories[SubIndex].name}}</h4>
     </div>
-    <div class="col-lg-4 col-6">
+    <div class="col-lg-2 col-6">
       <div class="dropdown">
         <!-- rubric18 
         the dropdown that is labled Order By -->
@@ -25,13 +25,18 @@
           <a class="dropdown-item" (click)="order('price', true)">Price Descending</a>
           <a class="dropdown-item" (click)="order('rating', false)">Rating</a>
           <a class="dropdown-item" (click)="order('rating', true)">Rating Descending</a>
-          <a class="dropdown-item" (click)="order(' ', false)">none</a>
+          <a class="dropdown-item" (click)="order(' ', false)">Default</a>
         </div>
       </div>
     </div>
+    <div class="col-lg-2 col-6">
+      <!-- rubric16
+      the number of shown items out of the number of items in the category -->
+      <p>Items Shown: {{numberShown}}/{{numberTotal}}</p>
+    </div>
     <hr>
     <hr>
-    <div class="col-lg-5 col-12">
+    <div class="col-lg-5 col-6">
       <!-- rubric17 
       the switch that is lables In Stock Only -->
       <label class="mx-3" for="switch">
@@ -44,37 +49,37 @@
     </div>
   </div>
   <div class="row mt-3 itembox justify-content-around">
-    <ng-container *ngIf="JSONData[CatIndex].subcategories[SubIndex].items[0]; else test">
+    <ng-container *ngIf="JsonData[CatIndex].subcategories[SubIndex].items[0]; else test">
       <!-- rubric20 
       the grid that is pobulated with all the items -->
       <!-- rubric33.1
       the orderBy pipe orders the list of items with the selected order method -->
       <ng-container
-        *ngFor="let item of JSONData[CatIndex].subcategories[SubIndex].items| orderBy:orderName:reverse; let i = index">
+        *ngFor="let item of JsonData[CatIndex].subcategories[SubIndex].items| orderBy:orderName:reverse; let i = index">
         <!-- rubric29 
         the ngIf checks if the items are in stock based on the btnToggle function -->
         <div class="m-2 col-12 col-lg-3 card" *ngIf="item.stock > InStock">
           <div class="card-body">
-            <!-- rubric31 
+            <!-- rubric31 rubric32
             if the user clickes on the upper part he gets taken to the corresponding product page -->
             <a class="text" [routerLink]="['/home/shopping/detail', CatIndex, SubIndex, item.name]">
               <!-- rubric21 
               the product name of every item -->
               <h5 class="card-title">{{item.name}}</h5>
-               <!-- rubric22
+              <!-- rubric22
               the product price of every item -->
               <h6 class="card-subtitle mb-2 text-muted">{{item.price}}€</h6>
-            </a>
-            <div class="row">
-               <!-- rubric23
+              <div class="row">
+                <!-- rubric23
               the product picture of every item -->
-              <img src="{{item.imagelink}}" class="col-6 responsive">
-               <!-- rubric24
+                <img src="{{item.imagelink}}" class="col-6 responsive">
+                <!-- rubric24
               the add button of every item -->
-              <!-- rubric30 
+                <!-- rubric30 
               the function sendData adds an item to the shopping cart -->
-              <button class="col-6 btn btn-dark" (click)="sendData(item.name)">Add</button>
-            </div>
+                <button class="col-6 btn btn-dark" (click)="sendData(item.name)">Add</button>
+              </div>
+            </a>
           </div>
         </div>
       </ng-container>

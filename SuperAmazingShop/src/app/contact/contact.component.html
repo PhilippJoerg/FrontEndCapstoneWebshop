@@ -1,3 +1,5 @@
+<!-- rubric57
+the form of the contact page -->
 <div id="ContactForm" role="dialog" aria-labelledby="myLabel" aria-hidden="true">
   <div class="dialog" role="document">
     <div class="content">
@@ -21,8 +23,21 @@
             </div>
             <div class="md-form mb-5">
               <i class="fa fa-tag prefix grey-text"></i>
-              <input #subject type="text" id="validationCustom03" class="form-control validate"
-                placeholder="error on the cart" required>
+              <div class="input-group">
+                <input #subject type="text" id="validationCustom03" class="form-control validate"
+                  placeholder="select from dropdown" readonly required>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">Subjects</button>
+                  <div class="dropdown-menu">
+                    <a #d1 class="dropdown-item" (click)="subject.value = d1.text">Order did not arrive</a>
+                    <a #d2 class="dropdown-item" (click)="subject.value = d2.text">Ordered a wrong item</a>
+                    <a #d3 class="dropdown-item" (click)="subject.value = d3.text">Wrong bill card</a>
+                    <a #d4 class="dropdown-item" (click)="subject.value = d4.text">Ingredients of an item</a>
+                    <a #d5 class="dropdown-item" (click)="subject.value = d5.text">Other: </a>
+                  </div>
+                </div>
+              </div>
               <label data-error="wrong" data-success="right" for="validationCustom03">Subject</label>
             </div>
           </div>

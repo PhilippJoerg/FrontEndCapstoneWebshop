@@ -3,6 +3,8 @@ import { ParamDataService } from '../param-data.service';
 import { IItems } from '../items';
 import { AppComponent } from '../app.component';
 import { CommonModule } from '@angular/common';
+import { isNull } from 'util';
+import { SinglePropOffsetValuesIndex } from '@angular/core/src/render3/interfaces/styling';
 
 
 @Component({
@@ -55,6 +57,10 @@ export class ShoppingCartComponent implements OnInit {
             item.quantaty = 1;
           }
         }
+      } else {
+        const single: any = this.Items;
+        single.totalPrice = single.price * single.quantaty;
+        this.Items = single;
       }
       let i = 0;
       this.total = 0;
@@ -111,5 +117,23 @@ export class ShoppingCartComponent implements OnInit {
         form.classList.add('was-validated');
       }, false);
     });
+  }
+  // rubric55
+  // everything updates based on the quantaty of the item
+  changeQuant(index: number, value: any) {
+    if (value !== '') {
+      if (this.Items.length !== undefined) {
+        this.Items[index].quantaty = value;
+      } else {
+        const temp: any = this.Items;
+        temp.quantaty = value;
+        this.Items = temp;
+      }
+      this.getTotal();
+      this.calculate();
+      this.paramData.clearCart();
+      this.paramData.storeData(this.Items);
+      this.app.itemscount = this.paramData.getItemCount();
+    }
   }
 }
