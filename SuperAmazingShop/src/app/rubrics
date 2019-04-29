@@ -13,3 +13,11 @@ in the "../../angular.json" file the port is declared under the point
     }
 }
 ***************************************************************************************************************
+
+Extra Information:
+Home Page: On the home page an error orrurs because it thinks it doesnt has the JsonData for the corresponding information but clearly it has the information and it gets displayed.
+
+Shopping Page: After reloading the item view an error occurs beause it thinks the JsonData for the corresponding information is not there but as you can see everything gets loaded correctly.
+
+Detail Page: An error occurs beacuse the program thinks JsonData is not there to load the rating value, but as you can see it gets displayed correctly.
+

@@ -69,17 +69,19 @@
               <!-- rubric22
               the product price of every item -->
               <h6 class="card-subtitle mb-2 text-muted">{{item.price}}€</h6>
-              <div class="row">
-                <!-- rubric23
-              the product picture of every item -->
-                <img src="{{item.imagelink}}" class="col-6 responsive">
-                <!-- rubric24
-              the add button of every item -->
-                <!-- rubric30 
-              the function sendData adds an item to the shopping cart -->
-                <button class="col-6 btn btn-dark" (click)="sendData(item.name)">Add</button>
-              </div>
             </a>
+            <div class="row">
+              <!-- rubric23
+              the product picture of every item -->
+                <a class="text col-6" [routerLink]="['/home/shopping/detail', CatIndex, SubIndex, item.name]">
+                  <img src="{{item.imagelink}}" class="responsive">
+                </a>
+              <!-- rubric24
+              the add button of every item -->
+              <!-- rubric30 
+              the function sendData adds an item to the shopping cart -->
+              <button class="col-6 btn btn-dark" (click)="sendData(item.name)">Add</button>
+            </div>
           </div>
         </div>
       </ng-container>
