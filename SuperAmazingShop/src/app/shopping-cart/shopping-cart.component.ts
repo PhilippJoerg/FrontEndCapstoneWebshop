@@ -3,9 +3,6 @@ import { ParamDataService } from '../param-data.service';
 import { IItems } from '../items';
 import { AppComponent } from '../app.component';
 import { CommonModule } from '@angular/common';
-import { isNull } from 'util';
-import { SinglePropOffsetValuesIndex } from '@angular/core/src/render3/interfaces/styling';
-
 
 @Component({
   selector: 'app-shopping-cart',
@@ -32,7 +29,7 @@ export class ShoppingCartComponent implements OnInit {
     } else {
       this.shipping = 0;
     }
-    this.tax = this.total * 0.19;
+    this.tax = this.total * 0.1;
     this.totaltoal = this.total + this.shipping;
   }
   // rubric53 rubric54

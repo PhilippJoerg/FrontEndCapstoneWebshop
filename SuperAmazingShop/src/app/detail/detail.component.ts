@@ -5,7 +5,7 @@ import { GetdataService } from '../getdata.service';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ParamDataService } from '../param-data.service';
 import { AppComponent } from '../app.component';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-detail',

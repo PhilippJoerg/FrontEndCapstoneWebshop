@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ShoppingPageComponent } from './shopping-page.component';
 
 describe('ShoppingPageComponent', () => {
