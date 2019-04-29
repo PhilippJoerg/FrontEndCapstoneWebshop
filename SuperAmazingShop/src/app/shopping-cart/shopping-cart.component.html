@@ -3,29 +3,61 @@
     <div class="col-12 col-lg-6 ">
       <!-- rubric47
       inside this ng-container you can see the information given -->
-      <ng-container *ngFor="let item of Items; let i = index">
+      <ng-container *ngIf="Items.length !== undefined; else singleItem">
+        <ng-container *ngFor="let item of Items; let i = index">
+          <div class="row item">
+            <div class="col-1">
+              <button (click)=delItems(i)>X</button>
+            </div>
+            <div class="col-3">
+              {{item.name}}
+            </div>
+            <div class="col-4">
+              {{item.description}}
+            </div>
+            <div class="col-2">
+              {{item.price|number}}€
+            </div>
+            <div class="col-2">
+              <input #quant class="quantinp" type="number" min="1" value="{{item.quantaty}}"
+                (click)="changeQuant(i, quant.value)" (keyup)="changeQuant(i, quant.value)">
+            </div>
+            <div class="col-10">
+              Item Total: {{item.totalPrice|number}}€
+            </div>
+            <div class="col-2">
+              <img class="responsive" src="{{item.imagelink}}">
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-template #singleItem>
         <div class="row item">
           <div class="col-1">
             <button (click)=delItems(i)>X</button>
           </div>
           <div class="col-3">
-            {{item.name}}
+            {{Items.name}}
           </div>
           <div class="col-4">
-            {{item.description}}
+            {{Items.description}}
           </div>
           <div class="col-2">
-            {{item.price|number}}€
+            {{Items.price|number}}€
           </div>
           <div class="col-2">
-            {{item.quantaty}}
+            <input #quant class="quantinp" type="number" min="1" value="{{Items.quantaty}}"
+              (click)="changeQuant(i, quant.value)" (keyup)="changeQuant(i, quant.value)">
           </div>
-          <div class="col-12">
-            Item Total: {{item.totalPrice|number}}€
+          <div class="col-10">
+            Item Total: {{Items.totalPrice|number}}€
+          </div>
+          <div class="col-2">
+            <img class="responsive" src="{{Items.imagelink}}">
           </div>
         </div>
-      </ng-container>
-      <div class="float-right mt-5">Subtotal: {{total|number}}€</div>
+      </ng-template>
+      <div class="float-right mt-3">Subtotal: {{total|number}}€</div>
     </div>
     <!-- rubric49
     the section with the given information like shipping and tax -->

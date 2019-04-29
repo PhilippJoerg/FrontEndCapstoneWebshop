@@ -1,30 +1,46 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, DoCheck } from '@angular/core';
 import { ICategory } from '../category';
 import { ParamDataService } from '../param-data.service';
 import { AppComponent } from '../app.component';
+import { GetdataService } from '../getdata.service';
 
 @Component({
   selector: 'app-product-category',
   templateUrl: './product-category.component.html',
   styleUrls: ['./product-category.component.scss']
 })
-export class ProductCategoryComponent implements OnInit {
+export class ProductCategoryComponent implements OnInit, DoCheck {
   @Input() CatIndex: number;
   @Input() SubIndex: number;
-  @Input() JSONData: ICategory;
+  oldSubIndex: number;
+  JsonData: ICategory;
   InStock: number;
   checked: boolean;
   orderName: string;
   reverse: boolean;
   ItemIndex: number;
-  constructor(public paramData: ParamDataService, public app: AppComponent) {
+  numberShown: number;
+  numberTotal: number;
+  constructor(public paramData: ParamDataService, public app: AppComponent, public data: GetdataService) {
     this.InStock = -1;
     this.checked = false;
     this.orderName = ' ';
     this.reverse = false;
     this.ItemIndex = 0;
+    this.numberTotal = 0;
+    this.numberShown = 0;
+    this.oldSubIndex = this.SubIndex;
   }
   ngOnInit() {
+    this.data.getData().subscribe((value: ICategory) => {
+      this.JsonData = value;
+    });
+  }
+  ngDoCheck() {
+    if (this.oldSubIndex !== this.SubIndex) {
+      this.getAvailable();
+      this.oldSubIndex = this.SubIndex;
+    }
   }
   order(name: string, reversed: boolean) {
     this.orderName = name;
@@ -38,14 +54,28 @@ export class ProductCategoryComponent implements OnInit {
       this.InStock = 0;
       this.checked = true;
     }
+    this.getAvailable();
   }
   sendData(itemName: string) {
     this.ItemIndex = 0;
-    while (this.JSONData[this.CatIndex].subcategories[this.SubIndex].items[this.ItemIndex].name !== itemName) {
+    while (this.JsonData[this.CatIndex].subcategories[this.SubIndex].items[this.ItemIndex].name !== itemName) {
       this.ItemIndex++;
     }
-    this.JSONData[this.CatIndex].subcategories[this.SubIndex].items[this.ItemIndex].quantaty = 1;
-    this.paramData.storeItems(this.JSONData[this.CatIndex].subcategories[this.SubIndex].items[this.ItemIndex]);
+    this.JsonData[this.CatIndex].subcategories[this.SubIndex].items[this.ItemIndex].quantaty = 1;
+    this.paramData.storeItems(this.JsonData[this.CatIndex].subcategories[this.SubIndex].items[this.ItemIndex]);
     this.app.itemscount++;
+  }
+  // rubric28
+  // this updates the items shown when it is called
+  getAvailable() {
+    this.numberShown = 0;
+    this.numberTotal = 0;
+    const temp = this.JsonData[this.CatIndex].subcategories[this.SubIndex].items;
+    for (const item of temp) {
+      this.numberTotal++;
+      if (item.stock > this.InStock) {
+        this.numberShown++;
+      }
+    }
   }
 }
