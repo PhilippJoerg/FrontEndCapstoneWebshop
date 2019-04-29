@@ -10,10 +10,10 @@ import { GetdataService } from '../getdata.service';
   styleUrls: ['./product-category.component.scss']
 })
 export class ProductCategoryComponent implements OnInit, DoCheck {
+  @Input() JsonData: ICategory;
   @Input() CatIndex: number;
   @Input() SubIndex: number;
   oldSubIndex: number;
-  JsonData: ICategory;
   InStock: number;
   checked: boolean;
   orderName: string;
@@ -32,9 +32,6 @@ export class ProductCategoryComponent implements OnInit, DoCheck {
     this.oldSubIndex = this.SubIndex;
   }
   ngOnInit() {
-    this.data.getData().subscribe((value: ICategory) => {
-      this.JsonData = value;
-    });
   }
   ngDoCheck() {
     if (this.oldSubIndex !== this.SubIndex) {
